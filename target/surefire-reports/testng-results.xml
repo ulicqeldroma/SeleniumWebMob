@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="2" passed="2">
+  <reporter-output>
+  </reporter-output>
+  <suite name="com.loghtyrian.BasicTest" duration-ms="13656" started-at="2017-02-12T04:10:25Z" finished-at="2017-02-12T04:10:39Z">
+    <groups>
+    </groups>
+    <test name="Command line test" duration-ms="13656" started-at="2017-02-12T04:10:25Z" finished-at="2017-02-12T04:10:39Z">
+      <class name="com.loghtyrian.BasicTest">
+        <test-method status="PASS" signature="googleCheeseExample()[pri:0, instance:com.loghtyrian.BasicTest@3b81a1bc]" name="googleCheeseExample" duration-ms="7293" started-at="2017-02-11T22:10:25Z" finished-at="2017-02-11T22:10:32Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- googleCheeseExample -->
+        <test-method status="PASS" signature="googleMilkExample()[pri:0, instance:com.loghtyrian.BasicTest@3b81a1bc]" name="googleMilkExample" duration-ms="6332" started-at="2017-02-11T22:10:32Z" finished-at="2017-02-11T22:10:39Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- googleMilkExample -->
+      </class> <!-- com.loghtyrian.BasicTest -->
+    </test> <!-- Command line test -->
+  </suite> <!-- com.loghtyrian.BasicTest -->
+</testng-results>
