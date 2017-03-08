@@ -25,7 +25,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.concurrent.TimeUnit;
-import java.util.function.Predicate;
 import java.io.*;
 
 public class BasicTest {
@@ -73,7 +72,7 @@ public class BasicTest {
         System.out.println("Page title is: " + driver.getTitle());
 		
 		// Find the input element by its ID
-        WebElement element = driver.findElement(By.id("play-control"));
+        WebElement scVideo = driver.findElement(By.id("play-control"));
 		
 		// Wait for the DOM to be complete, timeout after 60 seconds
         (new WebDriverWait(driver, 20)).until(new ExpectedCondition<Boolean>() {
@@ -82,14 +81,8 @@ public class BasicTest {
             }
         });
 		
-		try{
-			Thread.sleep(2000);
-		} catch(Exception e){
-			//TODO
-		}
-		
 		//Click on the Video
-		element.click();
+		scVideo.click();
 		
 		// Wait for the video to finish, timeout after 60 seconds
         (new WebDriverWait(driver, 60)).until(new ExpectedCondition<Boolean>() {
@@ -99,6 +92,12 @@ public class BasicTest {
                 return m.find();
             }
         });
+		
+		//Find a link in the left
+		WebElement scLink = driver.findElement(By.cssSelector("div#left-channel-links li a"));
+		
+		//Click on the Link
+		scLink.click();
 		
 		//Write to File
 		try{
@@ -134,7 +133,7 @@ public class BasicTest {
 		}
 			
 		proxy.stop();
-		//driver.quit();
+		driver.quit();
 
     }
 

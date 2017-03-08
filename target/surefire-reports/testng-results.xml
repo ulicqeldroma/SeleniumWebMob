@@ -2,12 +2,12 @@
 <testng-results skipped="0" failed="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="com.loghtyrian.BasicTest" duration-ms="23026" started-at="2017-03-08T03:17:43Z" finished-at="2017-03-08T03:18:06Z">
+  <suite name="com.loghtyrian.BasicTest" duration-ms="27974" started-at="2017-03-08T03:58:21Z" finished-at="2017-03-08T03:58:49Z">
     <groups>
     </groups>
-    <test name="Command line test" duration-ms="23026" started-at="2017-03-08T03:17:43Z" finished-at="2017-03-08T03:18:06Z">
+    <test name="Command line test" duration-ms="27974" started-at="2017-03-08T03:58:21Z" finished-at="2017-03-08T03:58:49Z">
       <class name="com.loghtyrian.BasicTest">
-        <test-method status="PASS" signature="checkLifeVideo()[pri:0, instance:com.loghtyrian.BasicTest@617c74e5]" name="checkLifeVideo" duration-ms="23014" started-at="2017-03-07T21:17:43Z" finished-at="2017-03-07T21:18:06Z">
+        <test-method status="PASS" signature="checkLifeVideo()[pri:0, instance:com.loghtyrian.BasicTest@617c74e5]" name="checkLifeVideo" duration-ms="27959" started-at="2017-03-07T21:58:21Z" finished-at="2017-03-07T21:58:49Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- checkLifeVideo -->
