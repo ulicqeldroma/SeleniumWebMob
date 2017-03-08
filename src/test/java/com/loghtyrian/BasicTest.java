@@ -9,6 +9,8 @@ import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 import net.lightbody.bmp.BrowserMobProxy;
 import net.lightbody.bmp.BrowserMobProxyServer;
@@ -22,11 +24,16 @@ import java.io.FileOutputStream;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.concurrent.TimeUnit;
+import java.util.function.Predicate;
 import java.io.*;
 
 public class BasicTest {
 	
 	private final String pattern = "smetrics";
+	private final String vidClass = "vjs-paused";
+	private final String locDriver = "C:\\Users\\Loghtyrian\\Selenium\\chromedriver.exe";
+	FileOutputStream fos;
 
     private void checkAnalytics(final String searchString) {
 		
@@ -44,9 +51,12 @@ public class BasicTest {
 		DesiredCapabilities capabilities = new DesiredCapabilities();
 		capabilities.setCapability(CapabilityType.PROXY, seleniumProxy);
 		
-		System.setProperty("webdriver.chrome.driver", "C:\\Users\\Loghtyrian\\Selenium\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", locDriver);
 		/*G:\Programacion\Selenium\chromedriver_win32*/
 		WebDriver driver = new ChromeDriver(capabilities);
+		
+		//Set implicit wait
+		//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
         // enable more detailed HAR capture, if desired (see CaptureType for the complete list)
 		proxy.enableHarCaptureTypes(CaptureType.REQUEST_CONTENT, CaptureType.RESPONSE_CONTENT);
@@ -62,14 +72,42 @@ public class BasicTest {
 
         System.out.println("Page title is: " + driver.getTitle());
 		
-		//Write to File
+		// Find the input element by its ID
+        WebElement element = driver.findElement(By.id("play-control"));
+		
+		// Wait for the DOM to be complete, timeout after 60 seconds
+        (new WebDriverWait(driver, 20)).until(new ExpectedCondition<Boolean>() {
+            public Boolean apply(WebDriver d) {
+				return ((JavascriptExecutor)d).executeScript("return document.readyState").equals("complete");
+            }
+        });
+		
 		try{
-			FileOutputStream fos = new FileOutputStream("C:\\Users\\Loghtyrian\\Documents\\SeleniumSamples\\MobBrowser\\SeleniumWebMob\\result.txt");
-			har.writeTo(fos);
+			Thread.sleep(2000);
 		} catch(Exception e){
-			
+			//TODO
 		}
 		
+		//Click on the Video
+		element.click();
+		
+		// Wait for the video to finish, timeout after 60 seconds
+        (new WebDriverWait(driver, 60)).until(new ExpectedCondition<Boolean>() {
+            public Boolean apply(WebDriver d) {
+				Pattern rgxvid = Pattern.compile(vidClass);
+				Matcher m = rgxvid.matcher(d.findElement(By.id("play-control")).getAttribute("class"));
+                return m.find();
+            }
+        });
+		
+		//Write to File
+		try{
+			fos = new FileOutputStream("C:\\Users\\Loghtyrian\\Documents\\SeleniumSamples\\MobBrowser\\SeleniumWebMob\\result.txt");
+		} catch(Exception e){
+			//TODO
+		}
+		
+		//Get Requests to smetrics
 		HarLog harLog = har.getLog();
 		List<HarEntry> logEntries = harLog.getEntries();
 		String httpMethod = "";
@@ -78,16 +116,30 @@ public class BasicTest {
 			Matcher m = regex.matcher(harRequest.getUrl());
 			if(m.find()){
 				System.out.println(harRequest.getQueryString());
+				try{
+					String _content = harRequest.getQueryString().toString();
+					byte[] content = _content.getBytes();
+					fos.write(content);
+				} catch(Exception e){
+					//TODO
+				}
 			}
+		}
+		
+		try{
+			fos.flush();
+			fos.close();
+		} catch(Exception e){
+			//TODO
 		}
 			
 		proxy.stop();
-		driver.quit();
+		//driver.quit();
 
     }
 
     @Test
-    public void checkLife() {
+    public void checkLifeVideo() {
         checkAnalytics("https://www.statefarm.com/insurance/life");
     }
 

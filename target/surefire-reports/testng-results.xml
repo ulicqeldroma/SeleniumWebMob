@@ -2,15 +2,15 @@
 <testng-results skipped="0" failed="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="com.loghtyrian.BasicTest" duration-ms="24187" started-at="2017-03-07T04:47:03Z" finished-at="2017-03-07T04:47:27Z">
+  <suite name="com.loghtyrian.BasicTest" duration-ms="23026" started-at="2017-03-08T03:17:43Z" finished-at="2017-03-08T03:18:06Z">
     <groups>
     </groups>
-    <test name="Command line test" duration-ms="24187" started-at="2017-03-07T04:47:03Z" finished-at="2017-03-07T04:47:27Z">
+    <test name="Command line test" duration-ms="23026" started-at="2017-03-08T03:17:43Z" finished-at="2017-03-08T03:18:06Z">
       <class name="com.loghtyrian.BasicTest">
-        <test-method status="PASS" signature="checkLife()[pri:0, instance:com.loghtyrian.BasicTest@15975490]" name="checkLife" duration-ms="24172" started-at="2017-03-06T22:47:03Z" finished-at="2017-03-06T22:47:27Z">
+        <test-method status="PASS" signature="checkLifeVideo()[pri:0, instance:com.loghtyrian.BasicTest@617c74e5]" name="checkLifeVideo" duration-ms="23014" started-at="2017-03-07T21:17:43Z" finished-at="2017-03-07T21:18:06Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- checkLife -->
+        </test-method> <!-- checkLifeVideo -->
       </class> <!-- com.loghtyrian.BasicTest -->
     </test> <!-- Command line test -->
   </suite> <!-- com.loghtyrian.BasicTest -->
